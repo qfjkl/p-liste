@@ -3,10 +3,9 @@ import os
 class Pliste:
 
 	def __init__(self,Tstring,ensemble):
-		""" initialisation des variables
-			
-			paramètres : Tstring (Taille de la chaine de caractère à générer), 
-						 ensemble (Ensemble d'élément à parcourir afin de générer les p-listes)
+		""" initialisation des variables		
+		paramètres : Tstring (Taille de la chaine de caractère à générer), 
+		ensemble (Ensemble d'élément à parcourir afin de générer les p-listes)
 
 		 """
 
