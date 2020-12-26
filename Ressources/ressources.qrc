@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file alias="menu-dashboard.svg">Images/menu-dashboard-interface.svg</file>
+    <file alias="menu--wallet-filled-money-tool.svg">Images/menu--wallet-filled-money-tool.svg</file>
+</qresource>
+</RCC>
