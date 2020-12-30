@@ -8,6 +8,7 @@ from PyQt5.QtGui import QFont,QIcon
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMenu, QToolBar
 from Ressources import qrc_resources
+from Controller.UserController import UserController
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -21,6 +22,7 @@ class Main(QtWidgets.QMainWindow):
         self._createActions()
         self._createMenuBar()
         self._createToolBars()
+        self._createStatusBar()
         # Display Main Windows 
         self.show()
     def _createMenuBar(self):
@@ -34,8 +36,6 @@ class Main(QtWidgets.QMainWindow):
         fileMenu.addAction(self.openAction)
         fileMenu.addSeparator()
         fileMenu.addAction(self.quitAction)
-      
-        
         # helpMenu  = menuBar.addMenu(QIcon(":menu-dashboard.svg"), "&Dashboard")
         dashMenu = menuBar.addMenu("&Dashboard")
         dashMenu.addAction(self.dashMineAction)
@@ -63,16 +63,26 @@ class Main(QtWidgets.QMainWindow):
         # Creating action using   constructor
         self.newAction = QAction(self)
         self.newAction.setText("&Mouveau")
+        # Sry KeyBoard for action
+        self.newAction.setShortcut("Ctrl+N")
         self.newAccountAction = QAction("&Compte...", self)
         self.newWalletAction = QAction("&Porte Feuill...", self)
         self.openAction = QAction("&Ouvrir...", self)
         self.dashMineAction = QAction(QIcon(":menu-dashboard.svg"), "&Minage...", self)
         self.dashWalletAction = QAction(QIcon(":menu--wallet-filled-money-tool.svg"), "&Porte Feuiille...", self)
+        self.dashMineAction.setShortcut("Ctrl+D")
         self.quitAction = QAction("&Quitter...", self)
         self.walletAction = QAction("&Porte Feuille...", self)
         self.aproposAction = QAction("&Apropos", self)
         self.helpAction = QAction("&Aide", self)
-   
+    def _createStatusBar(self):
+        self.statusbar = self.statusBar()
+        # Adding a temporary message
+        self.statusbar.showMessage("Chargement...", 5000)
+        # Adding a permanent message
+        user = UserController.getUserLogged()
+        self.wcLabel = QLabel(f"Utilisateur Connecté :<b> {user} </b>")
+        self.statusbar.addPermanentWidget(self.wcLabel)
 app = QApplication(sys.argv)
 d = Main()
 sys.exit(app.exec_())
